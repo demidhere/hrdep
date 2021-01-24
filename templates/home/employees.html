@@ -1,0 +1,68 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="main_box">
+    <h2><u>Департамент: {{ context.dep_name }} отдел</u></h2>
+    <h3>Список сотрудников</h3>
+    <div class="emps_view">
+        <table border=1 >
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Control</th>
+            </tr>
+            {% for emp in context.employees %}
+                <tr>
+                    <td>{{ emp['id'] }}</td>
+                    <td>{{ emp['name'] }}</td>
+                    <td>{{ emp['age'] }}</td>
+                    <td>{{ emp['position'] }}</td>
+                    <td>{{ emp['salary'] }}</td>
+                    <td>
+                        |
+                        <a href="">Details</a>
+                        |
+                        <a href="">Edit</a>
+                        |
+                        <a href="">Delete</a>
+                        |
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+    <p>
+        <a href="{{ url_for('add_employee', dep_id=context.dep_id) }}">Добавить сотрудника</a><br>
+        <a href="{{ url_for('index') }}">Назад к списку отделов</a>
+    </p>
+    <p>
+        <h3></h3>
+    </p>
+</div>
+
+<style>
+    .emps_view {
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        background: green;
+        color: red;
+        text: 20px;
+    }
+    table {
+        width: 100%;
+    }
+    th, td {
+        padding: 5px;
+    }
+</style>
+{% endblock %}
